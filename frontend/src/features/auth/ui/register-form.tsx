@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/shared/ui/form';
-import { useRegister } from '../model/use-register';
+import { useRegister, type RegisterFormData } from '../model/use-register';
 
 const registerSchema = z.object({
   name: z.string().min(1, 'Введите имя'),
@@ -26,19 +26,19 @@ const registerSchema = z.object({
   }),
 });
 
-type RegisterFormData = z.infer<typeof registerSchema>;
+type RegisterFormValues = z.infer<typeof registerSchema>;
 
 export function RegisterForm() {
   const { register, isLoading, error } = useRegister();
 
-  const form = useForm<RegisterFormData>({
+  const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
     defaultValues: { name: '', email: '', password: '', terms: false },
   });
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(register)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(register as (data: RegisterFormValues) => void)} className="space-y-4">
         <FormField
           control={form.control}
           name="name"

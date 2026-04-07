@@ -4,12 +4,16 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { authApi, type RegisterData } from '../api/auth.api';
 
+export interface RegisterFormData extends RegisterData {
+  terms: boolean;
+}
+
 export function useRegister() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const register = async (data: RegisterData) => {
+  const register = async ({ terms: _, ...data }: RegisterFormData) => {
     setIsLoading(true);
     setError(null);
     try {
