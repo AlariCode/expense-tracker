@@ -15,7 +15,8 @@ model User {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 
-  categories Category[]
+  categories   Category[]
+  transactions Transaction[]
 
   @@map("users")
 }
@@ -30,5 +31,27 @@ model Category {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  transactions Transaction[]
+
   @@map("categories")
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+model Transaction {
+  id          String          @id @default(uuid())
+  amount      Decimal
+  type        TransactionType
+  description String?
+  date        DateTime
+  categoryId  Int
+  category    Category        @relation(fields: [categoryId], references: [id])
+  userId      Int
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime        @default(now())
+
+  @@map("transactions")
 }

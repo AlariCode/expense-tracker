@@ -83,6 +83,27 @@ src/
 - shadcn/ui components live in `shared/ui/` — configured via `components.json` (aliases: `@/shared/ui`, `@/shared/lib/utils`)
 - Forms use `react-hook-form` + `zod` for validation
 
+## Commits
+
+Используем [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+type(scope): краткое описание на русском языке
+```
+
+- **type**: `feat`, `fix`, `refactor`, `docs`, `chore`, `style`, `test`, `perf`, `ci`, `build`
+- **scope**: `backend`, `frontend` или конкретный модуль (`auth`, `transactions`, `prisma` и т.д.)
+- Описание на русском, с маленькой буквы, без точки в конце
+- Body (опционально) — подробности через пустую строку
+
+Примеры:
+```
+feat(backend): добавить модуль транзакций
+fix(frontend): исправить валидацию формы регистрации
+refactor(auth): вынести JWT-логику в отдельный сервис
+docs: обновить CLAUDE.md
+```
+
 ### Environment Variables (Frontend)
 Create `frontend/.env.local`:
 ```
