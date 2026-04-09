@@ -1,6 +1,11 @@
-import type { Category } from '@/entities/category';
-
 export type TransactionType = 'INCOME' | 'EXPENSE';
+
+export interface TransactionCategory {
+  id: number;
+  name: string;
+  color: string;
+  icon: string;
+}
 
 export interface Transaction {
   id: string;
@@ -11,7 +16,7 @@ export interface Transaction {
   categoryId: number;
   userId: number;
   createdAt: string;
-  category: Category;
+  category: TransactionCategory;
 }
 
 export interface TransactionSummary {
