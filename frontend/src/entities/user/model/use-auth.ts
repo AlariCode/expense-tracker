@@ -17,7 +17,7 @@ export function useAuth() {
       return;
     }
 
-    apiClient<User>('/api/auth/me')
+    apiClient<User>('/api/users/me')
       .then(setUser)
       .catch(() => {
         localStorage.removeItem('accessToken');

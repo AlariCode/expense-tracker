@@ -1,10 +1,9 @@
-import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { CreateUserCommand } from '../user/commands/create-user.command';
 import { GetUserByEmailQuery } from '../user/queries/get-user-by-email.query';
-import { GetUserByIdQuery } from '../user/queries/get-user-by-id.query';
 import { LoginDto } from './dto/login.dto';
 import { RegisterDto } from './dto/register.dto';
 
@@ -42,14 +41,6 @@ export class AuthService {
       accessToken: this.generateToken(user),
       user: { id: user.id, name: user.name, email: user.email },
     };
-  }
-
-  async getProfile(id: number) {
-    const user = await this.queryBus.execute(new GetUserByIdQuery(id));
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-    return { id: user.id, name: user.name, email: user.email };
   }
 
   private generateToken(user: { id: number; email: string }): string {
