@@ -123,6 +123,14 @@ refactor(auth): вынести JWT-логику в отдельный серви
 docs: обновить CLAUDE.md
 ```
 
+## Pull Requests (GitHub Flow)
+
+- Title по Conventional Commits: `feat(scope): описание на русском`
+- Перед созданием PR запустить `git diff main...HEAD` для составления описания
+- Описание PR включает: что реализовано, затронутые эндпоинты, инструкцию по тестированию
+- PR создаётся командой: `gh pr create --title "..." --body "..."`
+- Ветка удаляется после мержа
+
 ### Environment Variables (Frontend)
 Create `frontend/.env.local`:
 ```
