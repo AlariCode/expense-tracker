@@ -58,30 +58,49 @@ The frontend follows [Feature-Sliced Design](https://feature-sliced.design/) met
 ```
 src/
 ├── app/                    # Next.js App Router pages & layouts
-│   └── (auth)/             # Route group (no URL segment)
-│       ├── login/page.tsx
-│       └── register/page.tsx
+│   ├── (auth)/             # Route group — login, register
+│   └── (dashboard)/        # Route group — main dashboard (auth guard)
+│       ├── page.tsx         # Transactions dashboard
+│       ├── categories/      # Categories page
+│       └── profile/         # User profile page
+├── widgets/                # Composite UI blocks (composed from features/entities)
+│   └── sidebar/            # App sidebar with navigation and user info
 ├── features/               # User-facing features (business logic + UI)
-│   └── auth/
-│       ├── api/            # API calls for the feature
-│       ├── model/          # Hooks/state (use-login.ts, use-register.ts)
-│       ├── ui/             # Feature UI components (login-form.tsx, register-form.tsx)
-│       └── index.ts        # Public API — only import from here
+│   ├── auth/               # Login/register
+│   └── transaction-list/   # Transaction list with pagination + summary
 ├── entities/               # Business entities (data models)
-│   └── user/
-│       ├── model/types.ts  # User, AuthResponse types
-│       └── index.ts
+│   ├── user/               # User, AuthResponse types
+│   ├── transaction/        # Transaction, TransactionType, TransactionSummary
+│   └── category/           # Category type
 └── shared/                 # Framework-agnostic utilities & UI kit
-    ├── api/                # Base HTTP client (api-client.ts)
+    ├── api/                # Base HTTP client (api-client.ts) — auto-attaches JWT
+    ├── hooks/              # Shared hooks (use-auth.ts)
     ├── lib/utils.ts        # cn() utility (clsx + tailwind-merge)
-    └── ui/                 # shadcn/ui components (button, input, form, label, card)
+    └── ui/                 # shadcn/ui components
 ```
 
 ### FSD Rules
-- Each layer can only import from layers **below** it: `app` → `features` → `entities` → `shared`
+- Each layer can only import from layers **below** it: `app` → `widgets` → `features` → `entities` → `shared`
 - External imports from a slice go through its `index.ts` (public API)
 - shadcn/ui components live in `shared/ui/` — configured via `components.json` (aliases: `@/shared/ui`, `@/shared/lib/utils`)
 - Forms use `react-hook-form` + `zod` for validation
+
+## Branching (GitHub Flow)
+
+Используем [GitHub Flow](https://docs.github.com/en/get-started/using-github-docs/github-flow):
+
+- `main` — стабильная ветка, всегда готова к деплою
+- Для каждой новой фичи/бага создаётся отдельная ветка от `main`
+- Формат имён веток: `feature/<название>` для фич, `fix/<название>` для багфиксов
+- После завершения работы — Pull Request в `main`, code review, merge
+- После мержа фича-ветка удаляется
+
+Примеры:
+```
+feature/main-page
+feature/transactions
+fix/login-validation
+```
 
 ## Commits
 
@@ -103,6 +122,14 @@ fix(frontend): исправить валидацию формы регистра
 refactor(auth): вынести JWT-логику в отдельный сервис
 docs: обновить CLAUDE.md
 ```
+
+## Pull Requests (GitHub Flow)
+
+- Title по Conventional Commits: `feat(scope): описание на русском`
+- Перед созданием PR запустить `git diff main...HEAD` для составления описания
+- Описание PR включает: что реализовано, затронутые эндпоинты, инструкцию по тестированию
+- PR создаётся командой: `gh pr create --title "..." --body "..."`
+- Ветка удаляется после мержа
 
 ### Environment Variables (Frontend)
 Create `frontend/.env.local`:
