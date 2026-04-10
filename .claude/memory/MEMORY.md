@@ -1,0 +1,1 @@
+- [Memory в папке проекта](feedback_memory_location.md) — хранить все memory в .claude/memory/ внутри репозитория
