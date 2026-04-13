@@ -32,21 +32,21 @@ src/
 
 ### API Endpoints
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| POST | /api/auth/register | - | Регистрация |
-| POST | /api/auth/login | - | Логин |
-| GET | /api/auth/me | JWT | Текущий пользователь |
-| GET | /api/categories | JWT | Категории пользователя |
-| POST | /api/categories | JWT | Создать категорию |
-| PATCH | /api/categories/:id | JWT | Обновить категорию |
-| DELETE | /api/categories/:id | JWT | Удалить категорию |
-| GET | /api/transactions | JWT | Список транзакций (фильтры, пагинация) |
-| GET | /api/transactions/summary | JWT | Сводка по месяцу/году |
-| GET | /api/transactions/:id | JWT | Транзакция по ID |
-| POST | /api/transactions | JWT | Создать транзакцию |
-| PATCH | /api/transactions/:id | JWT | Обновить транзакцию |
-| DELETE | /api/transactions/:id | JWT | Удалить транзакцию |
+| Method | Endpoint                  | Auth | Description                            |
+| ------ | ------------------------- | ---- | -------------------------------------- |
+| POST   | /api/auth/register        | -    | Регистрация                            |
+| POST   | /api/auth/login           | -    | Логин                                  |
+| GET    | /api/auth/me              | JWT  | Текущий пользователь                   |
+| GET    | /api/categories           | JWT  | Категории пользователя                 |
+| POST   | /api/categories           | JWT  | Создать категорию                      |
+| PATCH  | /api/categories/:id       | JWT  | Обновить категорию                     |
+| DELETE | /api/categories/:id       | JWT  | Удалить категорию                      |
+| GET    | /api/transactions         | JWT  | Список транзакций (фильтры, пагинация) |
+| GET    | /api/transactions/summary | JWT  | Сводка по месяцу/году                  |
+| GET    | /api/transactions/:id     | JWT  | Транзакция по ID                       |
+| POST   | /api/transactions         | JWT  | Создать транзакцию                     |
+| PATCH  | /api/transactions/:id     | JWT  | Обновить транзакцию                    |
+| DELETE | /api/transactions/:id     | JWT  | Удалить транзакцию                     |
 
 ### Patterns
 
@@ -66,7 +66,12 @@ npm run prisma:migrate      # Применение миграций
 ### Environment Variables
 
 Create `backend/.env`:
+
 ```
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/expence_tracker
 JWT_SECRET=your-secret-key
 ```
+
+## Актаулизация документации
+
+После изменения любых методов, необходимо актуализировать или добавить JSDoc. А для dto и контроллеров добавить декоракторы swagger.

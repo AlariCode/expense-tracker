@@ -9,6 +9,11 @@ import { GetSummaryHandler } from './queries/get-summary.handler';
 import { GetTransactionByIdHandler } from './queries/get-transaction-by-id.handler';
 import { GetTransactionsHandler } from './queries/get-transactions.handler';
 
+/**
+ * Модуль транзакций.
+ * Подключает CQRS-инфраструктуру, регистрирует контроллер, репозиторий
+ * и все command/query-хэндлеры модуля.
+ */
 @Module({
   imports: [CqrsModule],
   controllers: [TransactionController],
