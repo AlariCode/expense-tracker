@@ -2,6 +2,7 @@
 name: commit
 description: Создать git-коммит по Conventional Commits с описанием на русском языке. Учитывает соглашения проекта expense-tracker.
 model: sonnet
+allowed-tools: Bash(git *), Read, Glob, Grep
 ---
 
 # Commit Skill
