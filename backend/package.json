@@ -10,7 +10,8 @@
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,test}/**/*.ts\"",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev"
+    "prisma:migrate": "prisma migrate dev",
+    "test": "jest"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
@@ -32,13 +33,17 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.0",
+    "@nestjs/testing": "^11.1.19",
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.0.0",
     "@types/passport-jwt": "^4.0.1",
     "eslint": "^9.0.0",
+    "jest": "^30.3.0",
     "prettier": "^3.0.0",
     "prisma": "^6.0.0",
+    "ts-jest": "^29.4.9",
     "typescript": "^5.0.0"
   }
 }
