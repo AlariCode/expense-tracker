@@ -4,17 +4,18 @@ import { useEffect, useState } from 'react';
 import { categoriesApi } from '../api/categories.api';
 import type { Category } from './types';
 
-export function useCategories() {
+export function useCategories(refreshTrigger?: number) {
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     categoriesApi
       .getAll()
       .then(setCategories)
       .catch(() => setCategories([]))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [refreshTrigger]);
 
   return { categories, isLoading };
 }
