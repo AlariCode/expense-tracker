@@ -90,8 +90,8 @@ export function CreateTransactionDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
+        <Button className="rounded-xl gap-1.5 text-sm font-medium shadow-sm">
+          <Plus className="h-4 w-4" />
           Добавить транзакцию
         </Button>
       </DialogTrigger>

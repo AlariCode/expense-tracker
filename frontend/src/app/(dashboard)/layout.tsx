@@ -40,7 +40,7 @@ export default function DashboardLayout({
     <UserContext.Provider value={{ user, logout }}>
       <div className="flex h-screen">
         <Sidebar user={user} onLogout={logout} />
-        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto bg-background p-8">{children}</main>
       </div>
     </UserContext.Provider>
   );

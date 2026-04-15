@@ -35,8 +35,8 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Транзакции</h1>
-          <p className="text-muted-foreground">{currentMonth}</p>
+          <h1 className="text-xl font-bold tracking-tight text-foreground">Транзакции</h1>
+          <p className="mt-0.5 text-sm text-muted-foreground">{currentMonth}</p>
         </div>
         <CreateTransactionDialog onCreated={handleCreated} />
       </div>
