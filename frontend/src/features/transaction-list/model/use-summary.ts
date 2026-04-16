@@ -13,6 +13,7 @@ export function useSummary(month?: number, year?: number, refreshTrigger?: numbe
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoading(true);
     transactionsApi
       .getSummary(m, y)

@@ -9,6 +9,7 @@ export function useCategories(refreshTrigger?: number) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoading(true);
     categoriesApi
       .getAll()

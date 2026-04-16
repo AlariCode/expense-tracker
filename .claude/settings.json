@@ -11,6 +11,11 @@
 						"type": "command",
 						"if": "Edit(*.ts)|Write(*.ts)",
 						"command": "jq -r '.tool_input.file_path' | xargs npx prettier --write --ignore-unknown"
+					},
+					{
+						"type": "command",
+						"if": "Edit(*.ts)|Write(*.ts)",
+						"command": "npm run lint -- --fix"
 					}
 				]
 			}
