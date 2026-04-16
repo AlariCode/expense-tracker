@@ -1,5 +1,19 @@
 {
-  "enabledPlugins": {
-    "frontend-design@claude-plugins-official": true
-  }
+	"enabledPlugins": {
+		"frontend-design@claude-plugins-official": true
+	},
+	"hooks": {
+		"PostToolUse": [
+			{
+				"matcher": "Edit|Write",
+				"hooks": [
+					{
+						"type": "command",
+						"if": "Edit(*.ts)|Write(*.ts)",
+						"command": "jq -r '.tool_input.file_path' | xargs npx prettier --write --ignore-unknown"
+					}
+				]
+			}
+		]
+	}
 }
