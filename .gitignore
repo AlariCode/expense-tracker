@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 
+.playwright-mcp
 # Next.js
 .next/
 out/
@@ -33,3 +34,9 @@ prisma/*.db
 
 # Coverage
 coverage/
+
+# Playwright screenshots
+screenshots/
+
+# Playwright MCP artifacts
+.playwright-mcp/
